@@ -1,0 +1,402 @@
+body{
+    max-width: 540px;
+    min-width: 320px;
+    margin:0 auto;
+    font: normal 14px/1.5 Tahoma,"Lucida Grande", Verdana, "Microsoft Yahei", STXihei, hei;
+    color: #000;
+    background: #f2f2f2;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  a{
+    text-decoration: none;
+    color:#222;
+  }
+
+  div{
+      box-sizing: border-box;
+  }
+
+  ul{
+      list-style: none;
+      margin: 0px;
+      padding: 0px;
+  }
+
+  .search-index{
+      display: flex;
+      /*固定定位和父亲没关系，所以宽度不能任由他和屏幕不断伸缩，而是必须有最大最小范围*/
+      position: fixed;
+      top: 0;
+      /*left的50%是浏览器宽度的50%*/
+      left: 50%; 
+      /*translateX的50%是对自己宽度来说的*/
+      transform: translateX(-50%);
+      /*固定的盒子必须有宽度*/
+      width: 100%;
+      min-width: 320px;
+      max-width: 540px;
+      height: 44px;
+      /*因为有了定位，margin: 0px auto就无效了
+      有定位了就乖乖用left这些来定位*/
+      background-color: #F6F6F6;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+  }
+  .search{
+      flex: 1;
+      position: relative;
+      height: 26px;
+      border: 1px solid #ccc;
+      margin: 7px 10px;
+      border-radius: 5px;
+      line-height: 24px;
+      font-size: 12px;
+      color: #666;
+      padding-left: 25px;
+      box-shadow: 0 2px 4px rgba(0,0,0,.2);
+  }
+
+  .search::before{
+      content: "";
+      /* display: block; 会把文字挤掉*/
+      position: absolute;
+      top: 5px;
+      left: 5px; 
+      width: 15px;
+      height: 15px;
+      background: url("../images/sprite.png") no-repeat -59px -279px;
+      background-size: 104px auto;
+  }
+
+  .user{
+      width: 44px;
+      height: 44px;
+      font-size: 12px;
+      text-align: center;
+      color: #2eaae0;
+  }
+  .user::before{
+      content: "";
+      display: block;
+      width: 23px;
+      height: 23px;
+      background: url("../images/sprite.png") no-repeat -59px -194px ;
+      background-size: 104px auto;
+      margin: 4px auto -2px;
+  }
+  /*focus*/
+  .focus{
+      padding-top:44px;
+  }
+  .focus img{
+      width: 100%;
+  }
+  /*局部导航栏*/
+  .local-nav{
+      height: 64px;
+      background-color: #fff;
+      border-radius:8px;
+      margin: 3px 4px;
+      display: flex;
+  }
+  .local-nav li{
+      flex:1;
+  }
+
+  .local-nav a{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 12px;
+  }
+
+  .local-nav li [class^="local-nav-icon"]{
+      width: 32px;
+      height: 32px;
+      /*flex里面不会出现外边距合并，直接给儿子一个margin就好*/
+      margin-top: 8px;
+      background: url("../images/localnav_bg.png") no-repeat 0 0;
+      background-size: 32px auto;
+  }
+  .local-nav li .local-nav-icon-icon2{
+    background-position: 0 0;
+  }
+  .local-nav li .local-nav-icon-icon3{
+    background-position: 0 -32px;
+  }
+  .local-nav li .local-nav-icon-icon4{
+    background-position: 0 -64px;
+  }
+  .local-nav li .local-nav-icon-icon5{
+    background-position: 0 -96px;
+  }
+
+  nav{
+      border-radius: 8px;
+      margin: 0px 4px 3px;
+      /*可以用这个把子盒子超出小圆角的内容都切掉，视觉上就是完美的小圆角*/
+      overflow: hidden;
+  }
+
+  .nav-common{
+      height: 88px;
+      display: flex;
+  }
+
+  .nav-common:nth-child(1){
+    background-image:linear-gradient(to right, #FA5A55, #FA994D);
+  }
+
+  .nav-common:nth-child(2){
+      margin: 3px 0px;
+      background-image:linear-gradient(to right, #4B90ED, #53BCED);
+  }
+
+  .nav-common:nth-child(3){
+    background-image:linear-gradient(to right, #34C2A9, #6CD559);
+  }
+
+  .nav-items{
+      flex:1;
+      display: flex;
+      flex-direction: column;
+  }
+
+  /*选择前两个*/
+  .nav-items:nth-child(-n+2){
+      /* 这里不建议用margin撑开来，因为这样子会看到底色，我想要这些边边是白色 */
+      border-right: 1px solid #fff;
+  }
+
+  .nav-items a{
+      flex: 1;
+      text-align: center;
+      line-height: 44px;
+      font-size: 14px;
+      color: #fff;
+      text-shadow: 1px 1px rgba(0,0,0,.2);
+  }
+
+  .nav-items a:nth-child(1){
+      border-bottom: 1px solid #fff;
+  }
+
+  .nav-items:nth-child(1) a{
+    border-bottom: 0px;
+    background: url("../images/hotel.png") no-repeat bottom center;
+    background-size: 121px auto;
+  }
+
+  .nav-common:nth-child(2) .nav-items:nth-child(1) a{
+    background: url("../images/ticket.png") no-repeat bottom center;
+    background-size: 121px auto;
+  }
+
+  .nav-common:nth-child(3) .nav-items:nth-child(1) a{
+    background: url("../images/places.png") no-repeat bottom center;
+    background-size: 121px auto;
+  }
+  
+  .subnav-entry{
+      display: flex;
+      flex-wrap: wrap;
+      border-radius: 8px;
+      background-color: #fff;
+      margin: 0px 4px;
+      padding: 5px 0;
+      box-shadow: 0px 3px 3px rgba(0, 0, 0, .2);
+  }
+
+  .subnav-entry li{
+      flex:20%;
+
+  }
+
+  .subnav-entry li a{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  [class^="subnav-entry-icon"]{
+      width: 24px;
+      height: 24px;
+      background: url("../images/subnav-bg.png") no-repeat 0 0;
+      background-size: 24px auto;
+      margin-top: 6px;
+  }
+
+  .subnav-entry-icon2{
+      background-position: 0 -25px;
+  }
+
+  .subnav-entry-icon3{
+    background-position: 0 -54px;
+  }
+
+  .subnav-entry-icon4{
+    background-position: 0 -276px;
+  }
+
+  .subnav-entry-icon5{
+    background-position: 0 -85px;
+  }
+
+  .subnav-entry-icon6{
+    background-position: 0 -140px;
+  }
+
+  .subnav-entry-icon7{
+    background-position: 0 -170px;
+  }
+
+  .subnav-entry-icon8{
+    background-position: 0 -115px;
+  }
+
+  .subnav-entry-icon9{
+    background-position: 0 -250px;
+  }
+
+  .subnav-entry-icon10{
+    background-position: 0 -85px;
+  }
+
+  .sales-box{
+      border-top: 1px solid #bbb;
+      background-color: #fff;
+      margin: 4px;
+  }
+
+  .sales-hd{
+      position: relative;
+      height: 44px;
+      border-bottom: 1px solid #ccc;
+  }
+
+  .sales-hd h2{
+      /*热门活动几个字为了SEO优化，但是又不想看到，所以用了以下方法来隐藏*/
+      text-indent: -999px;
+      overflow: hidden;
+      position: relative;
+  }
+
+  .sales-hd h2::after{
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 20px;
+      width: 79px;
+      height: 15px;
+      background: url("../images/hot.png") no-repeat 0 -20px;
+      background-size: 79px auto;
+  }
+
+  .more{
+      position: absolute;
+      right: 5px;
+      top: 0px;
+      background-image: linear-gradient(to right, #FF506C, #FF6BC6);
+      border-radius: 15px;
+      padding: 3px 20px 3px 10px;
+      color: #fff;
+  }
+
+  .more::after{
+      content: "";
+      position: absolute;
+      top: 9px;
+      right: 9px;
+      width: 7px;
+      height: 7px;
+      /*画出来一个向右的只有边边的小三角*/
+      border-top: 2px solid #fff;
+      border-right: 2px solid #fff;
+      transform: rotate(45deg);
+  }
+
+  .row{
+      display: flex;
+  }
+
+  .row a{
+      flex: 1;
+      border-bottom: 1px solid #eee;
+  }
+
+  .row a:nth-child(1){
+      border-right: 1px solid #eee;
+  }
+
+  .row a img{
+      width: 100%;
+  }
+
+  .supply{
+      display: flex;
+      align-items: center;
+      margin: 3px 4px;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      background-color: #fff;
+  }
+
+  .supply li{
+      flex:1;
+      padding: 10px 0px;
+  }
+
+  .supply li a{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  [class^="supply-icon"]{
+      width: 20px;
+      height: 20px;
+      background: url("../images/sprite.png") no-repeat -60px -153px;
+      background-size: 104px auto;
+  }
+
+  .supply li a .supply-icon2{
+      background-position: -60px -174px;
+  }
+
+  .supply li a .supply-icon3{
+    background-position: -60px -310px;
+  }
+
+  .choose{
+      margin: 8px 0;
+      text-align: center;
+  }
+
+  .choose a:first-child::after{
+      content: "    |    ";
+  }
+
+  .choose a:last-child::before{
+      content: "    |    ";
+  }
+
+  .choose a:nth-child(2){
+      position: relative;
+  }
+  .choose a:nth-child(2)::before{
+      content: "";
+      display: inline-block;
+      width: 11px;
+      height: 11px;
+      padding: 0px 2px;
+      background: url(../images/un_icon_sites.png) no-repeat 0px -160px;
+      background-size: 30px auto;
+  }
+
+  footer{
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
